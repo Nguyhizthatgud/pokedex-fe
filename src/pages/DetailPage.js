@@ -195,9 +195,12 @@ const calculateWeaknesses = (types) => {
 	};
 
 	types.forEach((type) => {
-		weaknesses[type].weak.forEach((t) => total[t]++);
-		weaknesses[type].resistant.forEach((t) => total[t]--);
-		weaknesses[type].nullified.forEach((t) => total[t]--);
+		const typeData = weaknesses[type.toLowerCase()];
+		if (typeData) {
+			typeData.weak.forEach((t) => total[t]++);
+			typeData.resistant.forEach((t) => total[t]--);
+			typeData.nullified.forEach((t) => total[t]--);
+		}
 	});
 	let final = [];
 	Object.keys(total).forEach((type) => {
