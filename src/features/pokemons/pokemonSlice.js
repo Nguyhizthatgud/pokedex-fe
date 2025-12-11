@@ -16,7 +16,7 @@ export const getPokemons = createAsyncThunk('pokemons/getPokemons', async ({ pag
             });
         };
         await timeout();
-        return response.data;
+        return response;
     } catch (error) {
         return rejectWithValue(error);
     }
@@ -121,10 +121,11 @@ export const pokemonSlice = createSlice({
         [getPokemons.fulfilled]: (state, action) => {
             state.loading = false;
             const { search, type } = state;
+            const pokemonData = action.payload.data || action.payload;
             if ((search || type) && state.page === 1) {
-                state.pokemons = action.payload;
+                state.pokemons = pokemonData;
             } else {
-                state.pokemons = [...state.pokemons, ...action.payload];
+                state.pokemons = [...state.pokemons, ...pokemonData];
             }
         },
         [getPokemonById.fulfilled]: (state, action) => {
