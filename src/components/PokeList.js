@@ -163,7 +163,7 @@ export default function PokeList() {
                         }
                     >
                         <Grid container maxWidth="md" sx={styles.pokeContainer} spacing={{ xs: 0, md: 3 }} columns={{ xs: 12, sm: 12, md: 12, lg: 12 }}>
-                            {pokemons.map((pokemon) => (
+                            {(pokemons || []).map((pokemon) => (
                                 <Grid sx={{ display: 'flex', justifyContent: 'center', paddingLeft: '0!important' }} item xs={12} sm={6} md={4} lg={3} key={pokemon.name}>
                                     <Card component={Link} to={`pokemons/${pokemon.id}`} sx={{ width: '12rem', height: '19rem', textDecoration: 'none' }} elevation={0}>
                                         <div style={{ backgroundColor: '#F2F2F2', borderRadius: 5, padding: 30 }}>
@@ -177,7 +177,8 @@ export default function PokeList() {
                                         </CardContent>
                                         <CardActions disableSpacing sx={{ padding: '1rem' }}>
                                             <Stack direction="row" spacing={1}>
-                                                {pokemon.types.map((type) => (
+
+                                                {(pokemon.types || []).map((type) => (
                                                     <PokeType type={type} key={type} />
                                                 ))}
                                             </Stack>
