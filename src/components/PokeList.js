@@ -173,7 +173,7 @@ export default function PokeList() {
                                             <Typography variant="small" color="gray">
                                                 #{`00${pokemon.id}`.slice(-3)}
                                             </Typography>
-                                            <Typography variant="h5">{pokemon.name[0].toUpperCase() + pokemon.name.slice(1)}</Typography>
+                                            <Typography variant="h5">{pokemon.name ? pokemon.name[0].toUpperCase() + pokemon.name.slice(1) : 'Unknown'}</Typography>
                                         </CardContent>
                                         <CardActions disableSpacing sx={{ padding: '1rem' }}>
                                             <Stack direction="row" spacing={1}>
